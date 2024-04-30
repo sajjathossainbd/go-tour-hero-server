@@ -32,6 +32,13 @@ async function run() {
         res.send(result);
       });
 
+      app.get("/tourists-spot/:email", async (req, res) => {
+        const cursor = touristsSpotCollection.find();
+        const email = {email: req.params.email }
+        const result = await cursor.toArray(email);
+        res.send(result);
+      });
+
     app.post("/tourists-spot", async (req, res) => {
       const newTouristsSpot = req.body;
       const result = await touristsSpotCollection.insertOne(newTouristsSpot);
